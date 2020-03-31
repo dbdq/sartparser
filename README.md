@@ -1,3 +1,5 @@
+(This is a full clone of Miguel SDC's [repo](https://bitbucket.org/miguelsdc/sartparser) for backup purpose only.)
+
 SARTParser is an open source library which can parse Stochastic Context Free
 Grammars.
 
