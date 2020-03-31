@@ -1,0 +1,70 @@
+####################################################################
+# Example grammar: Square3                                         #
+# Accounts for junk in the beginning of the sequence               #
+####################################################################
+
+Section Terminals
+lr ud rl du lru lrd sc 
+
+Section NonTerminals 
+FIG HAT GSQ SQ RS LS 
+LRD SC LRU LR UD RL DU
+SKIP
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+FIG
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+FIG:	  HAT            [0.5]
+	| GSQ            [0.5]
+GSQ:      SQ             [1.0]
+SQ:       RS             [0.5]
+	| LS             [0.5]
+HAT:	  LRD SC LRU	 [1.0]
+RS: 	  LR UD RL DU    [1.0]
+LS:	  RL DU LR UD    [1.0]
+
+LRD:	  lrd       [0.5]
+	| SKIP lrd  [0.5]
+SC:	  sc        [0.5]
+	| SKIP sc   [0.5]
+LRU:	  lru       [0.5]
+	| SKIP lru  [0.5]
+LR:	  lr        [0.5]
+	| SKIP lr   [0.5]
+UD:	  ud        [0.5]
+	| SKIP ud   [0.5]
+RL:	  rl        [0.5]
+	| SKIP rl   [0.5]
+DU:	  du        [0.5]
+	| SKIP du   [0.5]
+
+SKIP:     lrd       [0.07142857142857]
+	| sc        [0.07142857142857]
+	| lru       [0.07142857142857]
+	| lr        [0.07142857142857]
+	| ud        [0.07142857142857]
+	| rl        [0.07142857142857]
+	| du        [0.07142857142857]
+	| lrd SKIP  [0.07142857142857]
+	| sc SKIP   [0.07142857142857]
+	| lru SKIP  [0.07142857142857]
+	| lr SKIP   [0.07142857142857]
+	| ud SKIP   [0.07142857142857]
+	| rl SKIP   [0.07142857142857]
+	| du SKIP   [0.07142857142857]
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+####################################################################
+# Example grammar: Rhsquare                                        #
+# This Grammar accounts for junk only at the beginning of          # 
+# the sequence.                                                    #
+####################################################################
+
+Section Terminals
+lr ud rl du
+
+Section NonTerminals 
+RS LR UD RL DU
+Lr Ud Rl Du
+SKIP
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+RS
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+
+RS: 	  LR UD RL DU    [1.0]
+<Right hand square@[%start@%end]@%probability>
+
+LR:	  Lr	    [1.0]
+UD:	  Ud	    [1.0]
+RL:	  Rl	    [1.0]
+DU:	  Du	    [1.0]
+
+Lr:	  lr        [0.6]
+	| SKIP lr   [0.4]
+Ud:	  ud        [0.6]
+	| SKIP ud   [0.4]
+Rl:	  rl        [0.6]
+	| SKIP rl   [0.4]
+Du:	  du        [0.6]
+	| SKIP du   [0.4]
+
+SKIP:     lr        [0.07142857142857]
+	| ud        [0.07142857142857]
+	| rl        [0.07142857142857]
+	| du        [0.07142857142857]
+	| lr SKIP   [0.07142857142857]
+	| ud SKIP   [0.07142857142857]
+	| rl SKIP   [0.07142857142857]
+	| du SKIP   [0.07142857142857]
+
+
+
+
+
+
+
+
+
+

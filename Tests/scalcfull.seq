@@ -1,0 +1,6 @@
+####################################################
+# This tests stochastic parser with deterministic  #
+# input. Corresponding grammar is scalc.grm.       #
+####################################################
+
+a * a * a * a + a + a * a

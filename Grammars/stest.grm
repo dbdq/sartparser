@@ -1,0 +1,48 @@
+####################################################################
+# The Grammar file consists of sections. Interleaving of the       #
+# sections is acceptable, except for productions. Each section     #
+# of productions has to only use terminals and nontermianls        #
+# previously defined since they get validated while the production #
+# is being read from the file.                                     #
+# As it is obvious by now, the comments begin with a '#'.          #
+####################################################################
+
+####################################################################
+# Example grammar: Test                                            #
+#    This is a simple ad hoc grammar describing ... Well ...       #
+#    nothing in particular.                                        #
+####################################################################
+
+Section Terminals
+a b c d
+
+Section NonTerminals
+A B CDE F
+
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+CDE
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+CDE: 	  a b A		[ .5 ]
+	| A		[.5 ]
+A: 	  b c F 	[ .6]
+	| B c		[.4]
+B:        b		[1]
+F:	  d		[1]
+
+
+
+
+
+
+
+
+
+
+

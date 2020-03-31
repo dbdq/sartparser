@@ -1,0 +1,56 @@
+####################################################################
+# The Grammar file consists of sections. Interleaving of the       #
+# sections is acceptable, except for productions. Each section     #
+# of productions has to only use terminals and nontermianls        #
+# previously defined since they get validated while the production #
+# is being read from the file.                                     #
+# As it is obvious by now, the comments begin with a '#'.          #
+####################################################################
+
+####################################################################
+# Example grammar: L0                                              #
+#    This is the grammar for a subset of L0 language taken from    #
+#    Andres Stolcke's PhD. thesis. Added probabilities to test.    #
+####################################################################
+
+Section Terminals
+a circle square triangle touches is above below
+
+Section NonTerminals
+S NP VP PP Det N VT VI P
+
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+S
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+S:	VP NP				[ 1.0 ]
+NP:	N Det 				[ 1.0 ]
+VP: 	NP VT				[ 0.7 ] 
+	| PP VI				[ 0.3 ]
+PP:	NP P				[ 1.0 ]
+Det:	a				[ 1.0 ]
+N:	circle				[ 0.3 ] 
+	| square 			[ 0.4 ]
+	| triangle			[ 0.3 ]
+VT:	touches				[ 1.0 ]
+VI:	is				[ 1.0 ]
+P:	above				[ 0.4 ] 
+	| below				[ 0.6 ]
+
+
+
+
+
+
+
+
+
+
+
+

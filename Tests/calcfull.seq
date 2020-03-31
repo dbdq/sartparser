@@ -1,0 +1,9 @@
+####################################################
+# Example of full input for the parser from the    #
+# Earley's thesis.                                 #
+# Corresponding grammar is calc.grm for the        #
+# deterministic parser, scalc.grm for the          # 
+# stochastic one                                   #
+####################################################
+
+a * a * a * a + a + a * a

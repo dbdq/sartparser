@@ -1,0 +1,58 @@
+####################################################################
+# Example grammar: Christmas tree                                  #
+####################################################################
+Section Terminals
+up lt upd dnd dn
+
+Section NonTerminals 
+TREE BRANCH LT_SIDE RT_SIDE
+UP LT UPD DND DN
+SKIP
+
+Section Axiom
+TREE
+
+Section Productions
+TREE:	  UP BRANCH DN          [1]
+<Christmas tree:>
+BRANCH:	  LT_SIDE BRANCH RT_SIDE  [.9]
+	| LT_SIDE RT_SIDE         [.1]
+<	@Branch@[%start %end]>
+
+LT_SIDE:	LT UPD          [1]
+RT_SIDE:        DND LT          [1]
+
+LT:	  lt                    [.8]
+	| SKIP lt               [.1]
+	| lt SKIP               [.1]
+UPD:	  upd                   [.8]
+	| SKIP upd              [.1]
+	| upd SKIP              [.1]
+DND:	  dnd                   [.8]
+	| SKIP dnd              [.1]
+	| dnd SKIP              [.1]
+UP:	  up                    [.8]
+	| SKIP up		[.1]
+	| up SKIP		[.1]
+DN:	  dn                    [.8]
+	| SKIP dn		[.1]
+	| dn SKIP		[.1]
+
+SKIP:	  lt                    [.0001]
+	| upd                   [.0001]
+	| dnd                   [.0001]
+	| up 			[.0001]
+	| dn                    [.0001]
+	| lt SKIP 		[.0001]
+	| upd SKIP              [.0001]
+	| dnd SKIP		[.0001]
+	| up SKIP               [.0001]
+	| dn SKIP		[.0001]
+
+
+
+
+
+
+
+

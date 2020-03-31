@@ -1,0 +1,52 @@
+####################################################################
+# Example grammar: Sibelius                                        #
+####################################################################
+
+Section Terminals
+tdownb tupb trightb tupb3
+
+Section NonTerminals 
+PIECE THREE TWO
+TDOWNB TUPB TRIGHTB TUPB3
+SKIP
+
+Section Axiom
+PIECE
+
+Section Productions
+PIECE:	  THREE PIECE    [.25]
+	| TWO PIECE      [.25]
+	| THREE          [.25]
+	| TWO            [.25]
+
+THREE:	  TDOWNB TRIGHTB TUPB3     [1.0]
+TWO:	  TDOWNB TUPB              [1.0]
+
+TDOWNB:	  tdownb            [0.5]
+	| SKIP tdownb       [0.5]
+TUPB:	  tupb              [0.5]
+	| SKIP tupb         [0.5]
+TRIGHTB:  trightb           [0.5]
+	| SKIP trightb      [0.5] 
+TUPB3:	  tupb3             [0.5]
+	| SKIP tupb3        [0.5]
+
+SKIP:     tdownb          [0.125]
+	| tupb            [0.125]
+	| trightb         [0.125]
+	| tupb3           [0.125]
+	| tdownb SKIP     [0.125]
+	| tupb SKIP       [0.125]
+	| trightb SKIP    [0.125]
+	| tupb3 SKIP      [0.125]
+
+
+
+
+
+
+
+
+
+
+

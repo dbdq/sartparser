@@ -1,0 +1,8 @@
+####################################################
+# Simple Left Corner recursion example from        #
+# Stolcke's thesis.                                #
+# Grammar - recursion.grm for deterministic parser,#
+#           srecursion.grm for stochastic one      #
+####################################################
+
+a a a

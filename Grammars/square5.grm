@@ -1,0 +1,73 @@
+####################################################################
+# Example grammar: Square5                                         #
+# This Grammar accounts for junk at the end and in the front of    # 
+# the sequence.                                                    #
+# IT IS WRONG! ANY SQUARE CAN BE EITHER RH OR LH HERE!!!           #
+####################################################################
+
+Section Terminals
+lr ud rl du
+
+Section NonTerminals 
+SQUARE RH LH 
+TOP BOT LFT RGHT
+LR UD RL DU
+SKIP
+
+Section Axiom
+SQUARE
+
+Section Productions
+SQUARE:	  RH             [0.5]
+	| LH             [0.5]
+
+RH: 	  TOP RGHT BOT LFT    [1.0]
+<Right hand square@[%start %end]@%probability>
+
+LH:	  BOT RGHT TOP LFT   [1.0]
+<Left hand square@[%start %end]@%probability>
+
+TOP:	  RL	[.5]
+	| LR	[.5]
+<@Top@[%start %end] @@ %probability>
+BOT:	  LR	[.5]
+	| RL	[.5]
+<@Bottom@[%start %end] @ %probability>
+LFT:	  DU	[.5]
+	| UD	[.5]
+<@Left@[%start %end] @ %probability>
+RGHT:	  UD	[.5]
+	| DU	[.5]
+<@Right@[%start %end] @ %probability>
+
+LR:	  lr        [0.4]
+	| SKIP lr   [0.3]
+	| lr SKIP   [0.3]
+UD:	  ud        [0.4]
+	| SKIP ud   [0.3]
+	| ud SKIP   [0.3]
+RL:	  rl        [0.4]
+	| SKIP rl   [0.3]
+	| rl SKIP   [0.3]
+DU:	  du        [0.4]
+	| SKIP du   [0.3]
+	| du SKIP   [0.3]
+
+SKIP:	  lr        [0.007142857142857]
+	| ud        [0.007142857142857]
+	| rl        [0.007142857142857]
+	| du        [0.007142857142857]
+	| lr SKIP   [0.007142857142857]
+	| ud SKIP   [0.007142857142857]
+	| rl SKIP   [0.007142857142857]
+	| du SKIP   [0.007142857142857]
+
+
+
+
+
+
+
+
+
+

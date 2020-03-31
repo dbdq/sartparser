@@ -1,0 +1,87 @@
+####################################################################
+# Example grammar: T1Sibelius                                      #
+#    Five primitive gestures accounting for junk in the beginning  #
+#    and the end of the sequence.                                  #
+####################################################################
+
+Section Terminals
+tdownb tupb tdownb3 trightb3 tupb3
+
+Section NonTerminals 
+PIECE BAR THREE TWO
+TDOWNB TUPB TDOWNB3 TRIGHTB3 TUPB3
+SKIP
+
+Section Axiom
+PIECE
+
+#############################################################################
+# Semantic action after the production is in the following format:          #
+# < - beginning of the action block                                         #
+#     Text with formatting symbols                                          #
+# > - end of the action block                                               #
+# Formatting symbols:                                                       #
+#	%start		- Substituted with LowMark of the state             #
+#	%end		- Substituted with HiMark of the state              #
+#	%probability	- Substituted with Viterbi probability of the state #
+#	@		- <TAB>                                             #
+#	\		- <LINE BREAK>                                      #
+#	~		- 3 spaces                                          #
+#############################################################################
+Section Productions
+PIECE:	  BAR PIECE      [.5]
+	| BAR            [.5]
+
+BAR:      TWO            [.5]
+	| THREE          [.5]
+<BAR:>
+
+THREE:	  TDOWNB3 TRIGHTB3 TUPB3     [1.0]
+<
+	@3/4@start sample/end sample: [%start %end]\
+	@Conducted as three quarter bit pattern.
+>
+
+TWO:	  TDOWNB TUPB                [1.0]
+<
+	@2/4@start sample/end sample: [%start %end]\
+	@Conducted as two quarter bit pattern. 
+>
+
+TDOWNB:	  tdownb            [0.6]
+	| SKIP tdownb       [0.2]
+	| tdownb SKIP       [0.2]
+TUPB:	  tupb              [0.6]
+	| SKIP tupb         [0.2]
+	| tupb SKIP         [0.2]
+TDOWNB3:  tdownb3           [0.6]
+	| SKIP tdownb3      [0.2]
+	| tdownb3 SKIP      [0.2]
+TRIGHTB3: trightb3          [0.6]
+	| SKIP trightb3     [0.2] 
+	| trightb3 SKIP     [0.2] 
+TUPB3:	  tupb3             [0.6]
+	| SKIP tupb3        [0.2]
+	| tupb3 SKIP        [0.2]
+
+SKIP:     tdownb          [0.01]
+	| tupb            [0.01]
+	| tdownb3         [0.01]
+	| trightb3        [0.01]
+	| tupb3           [0.01]
+	| tdownb SKIP     [0.01]
+	| tupb SKIP       [0.01]
+	| tdownb3 SKIP    [0.01]
+	| trightb3 SKIP   [0.01]
+	| tupb3 SKIP      [0.01]
+
+
+
+
+
+
+
+
+
+
+

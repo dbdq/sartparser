@@ -1,0 +1,7 @@
+####################################################
+# This tests deterministic parser. The test and    #
+# and the grammar are from the Earley's PhD.       #
+# thesis. Grammar - calc.grm                       #
+####################################################
+
+a + a * a

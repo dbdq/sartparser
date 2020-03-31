@@ -1,0 +1,14 @@
+####################################################
+# This test produces "non-deterministic" input:    #
+#       a + a * a                                  #
+# to a stochastic parser with probabilistic input  #
+# stream. Note that the nonterminals are           #
+# statistically independent - they do not have to  #
+# sum up to 1 on each line.                        #
+####################################################
+
+	.4 .4 .2 	# a
+	.1 .5 .4	# +
+	.7 .5 .4	# a
+	.3 .3 .6	# *
+	.8 .4 .3	# a

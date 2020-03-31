@@ -1,0 +1,48 @@
+####################################################################
+# Example grammar: Square1                                         #
+# This grammar introduces pre-terminals.                           #
+####################################################################
+
+Section Terminals
+lr ud rl du lru lrd sc 
+
+Section NonTerminals 
+FIG HAT GSQ SQ RS LS 
+LRD SC LRU LR UD RL DU
+
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+FIG
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+FIG:	  HAT            [0.5]
+	| GSQ             [0.5]
+GSQ:      SQ             [1.0]
+SQ:       RS             [0.5]
+	| LS             [0.5]
+HAT:	  LRD SC LRU	 [1.0]
+RS: 	  LR UD RL DU    [1.0]
+LS:	  RL DU LR UD    [1.0]
+
+LRD:	  lrd     [1.0] 
+SC:	  sc      [1.0]
+LRU:	  lru     [1.0]
+LR:	  lr      [1.0]
+UD:	  ud      [1.0]
+RL:	  rl      [1.0]
+DU:	  du      [1.0]
+
+
+
+
+
+
+
+
+
+

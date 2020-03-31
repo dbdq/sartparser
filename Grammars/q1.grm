@@ -1,0 +1,16 @@
+Section Terminals
+a b
+
+Section NonTerminals
+S A B
+
+Section Axiom
+S
+
+Section Productions
+S: A B [ 0.5 ]
+ | S S [ 0.5 ]
+A: a [ 0.9 ]
+ | b [ 0.1 ]
+B: a [ 0.1 ]
+ | b [ 0.9 ]

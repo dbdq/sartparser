@@ -1,0 +1,57 @@
+####################################################################
+# Example grammar: Sibelius                                        #
+# for hmms trained on me.                                          #
+####################################################################
+
+Section Terminals
+udr dul lr dur
+
+Section NonTerminals 
+PIECE THREE TWO
+UDR DUL LR DUR
+SKIP
+
+Section Axiom
+PIECE
+
+Section Productions
+PIECE:	  THREE PIECE    [.25]
+	| TWO PIECE      [.25]
+	| THREE          [.25]
+	| TWO            [.25]
+
+THREE:	  UDR LR DUR     [1.0]
+TWO:	  UDR DUL        [1.0]
+
+UDR:	  udr            [0.4]
+	| SKIP udr       [0.3]
+	| udr SKIP       [0.3]
+DUL:	  dul            [0.4]
+	| SKIP dul       [0.3]
+	| dul SKIP       [0.3]
+LR:	  lr             [0.4]
+	| SKIP lr        [0.3] 
+	| lr SKIP        [0.3] 
+DUR:	  dur            [0.4]
+	| SKIP dur       [0.3]
+	| dur SKIP       [0.3]
+
+SKIP:     udr        [0.125]
+	| dul        [0.125]
+	| lr         [0.125]
+	| dur        [0.125]
+	| udr SKIP   [0.125]
+	| dul SKIP   [0.125]
+	| lr SKIP    [0.125]
+	| dur SKIP   [0.125]
+
+
+
+
+
+
+
+
+
+
+

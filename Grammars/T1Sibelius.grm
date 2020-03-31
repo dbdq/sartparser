@@ -1,0 +1,67 @@
+####################################################################
+# Example grammar: T1Sibelius                                      #
+#    Five primitive gestures accounting for junk in the beginning  #
+#    and the end of the sequence.                                  #
+####################################################################
+
+Section Terminals
+tdownb tupb tdownb3 trightb3 tupb3
+
+Section NonTerminals 
+PIECE THREE TWO
+TDOWNB TUPB TDOWNB3 TRIGHTB3 TUPB3
+SKIP
+
+Section Axiom
+PIECE
+
+Section Productions
+PIECE:	  THREE PIECE    [.25]
+	| TWO PIECE      [.25]
+	| THREE          [.25]
+	| TWO            [.25]
+
+THREE:	  TDOWNB3 TRIGHTB3 TUPB3     [1.0]
+<3/4 Bar [%start %end]>
+TWO:	  TDOWNB TUPB                [1.0]
+<2/4 Bar [%start %end]>
+
+TDOWNB:	  tdownb            [0.6]
+	| SKIP tdownb       [0.2]
+	| tdownb SKIP       [0.2]
+TUPB:	  tupb              [0.6]
+	| SKIP tupb         [0.2]
+	| tupb SKIP         [0.2]
+TDOWNB3:  tdownb3           [0.6]
+	| SKIP tdownb3      [0.2]
+	| tdownb3 SKIP      [0.2]
+TRIGHTB3: trightb3          [0.6]
+	| SKIP trightb3     [0.2] 
+	| trightb3 SKIP     [0.2] 
+TUPB3:	  tupb3             [0.6]
+	| SKIP tupb3        [0.2]
+	| tupb3 SKIP        [0.2]
+
+SKIP:     tdownb          [0.01]
+	| tupb            [0.01]
+	| tdownb3         [0.01]
+	| trightb3        [0.01]
+	| tupb3           [0.01]
+	| tdownb SKIP     [0.01]
+	| tupb SKIP       [0.01]
+	| tdownb3 SKIP    [0.01]
+	| trightb3 SKIP   [0.01]
+	| tupb3 SKIP      [0.01]
+
+
+
+
+
+
+
+
+
+
+
+
+

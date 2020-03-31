@@ -1,0 +1,40 @@
+####################################################################
+# Example grammar: Square                                          #
+####################################################################
+
+Section Terminals
+lr ud rl du lru lrd sc 
+
+Section NonTerminals 
+FIG HAT GSQ SQ RS LS
+
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+FIG
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+FIG:	  HAT            [0.5]
+	| GSQ             [0.5]
+GSQ:      SQ             [1.0]
+SQ:       RS             [0.5]
+	| LS             [0.5]
+HAT:	  lrd sc lru     [1.0]
+RS: 	  lr ud rl du    [1.0]
+LS:	  rl du lr ud    [1.0]
+
+
+
+
+
+
+
+
+
+
+
+

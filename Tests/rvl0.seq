@@ -1,0 +1,7 @@
+####################################################
+# L0 language example from Stolcke's thesis.       #
+# Grammar - l0.grm for deterministic parser,       #
+#           sl0.grm for stochastic one             #
+####################################################
+
+triangle a touches circle a

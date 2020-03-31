@@ -1,0 +1,88 @@
+####################################################################
+# Example grammar: Square4                                         #
+# This Grammar accounts for junk at the end and in the front of    # 
+# the sequence.                                                    #
+####################################################################
+
+Section Terminals
+lr ud rl du lru lrd sc 
+
+Section NonTerminals 
+FIG HAT GSQ SQ RS LS 
+LRD SC LRU LR UD RL DU
+SKIP
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+FIG
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+FIG:	  HAT            [0.5]
+	| GSQ            [0.5]
+GSQ:      SQ             [1.0]
+SQ:       RS             [0.5]
+	| LS             [0.5]
+
+HAT:	  LRD SC LRU	 [1.0]
+<Hat %probability>
+RS: 	  LR UD RL DU    [1.0]
+<Right hand square [%start %end] %probability>
+LS:	  RL DU LR UD    [1.0]
+
+LRD:	  lrd       [0.4]
+	| SKIP lrd  [0.3]
+	| lrd SKIP  [0.3]
+<Diagonal down [%start %end] %probability>
+SC:	  sc        [0.4]
+	| SKIP sc   [0.3]
+	| sc SKIP   [0.3]
+<Arc [%start %end] %probability>
+LRU:	  lru       [0.4]
+	| SKIP lru  [0.3]
+	| lru SKIP  [0.3]
+<Diagonal up [%start %end] %probability>
+LR:	  lr        [0.4]
+	| SKIP lr   [0.3]
+	| lr SKIP   [0.3]
+<Left to right [%start %end] %probability>
+UD:	  ud        [0.4]
+	| SKIP ud   [0.3]
+	| ud SKIP   [0.3]
+<Up down [%start %end] %probability>
+RL:	  rl        [0.4]
+	| SKIP rl   [0.3]
+	| rl SKIP   [0.3]
+<Right left [%start %end] %probability>
+DU:	  du        [0.4]
+	| SKIP du   [0.3]
+	| du SKIP   [0.3]
+<Down up [%start %end] %probability>
+
+SKIP:     lrd       [0.07142857142857]
+	| sc        [0.07142857142857]
+	| lru       [0.07142857142857]
+	| lr        [0.07142857142857]
+	| ud        [0.07142857142857]
+	| rl        [0.07142857142857]
+	| du        [0.07142857142857]
+	| lrd SKIP  [0.07142857142857]
+	| sc SKIP   [0.07142857142857]
+	| lru SKIP  [0.07142857142857]
+	| lr SKIP   [0.07142857142857]
+	| ud SKIP   [0.07142857142857]
+	| rl SKIP   [0.07142857142857]
+	| du SKIP   [0.07142857142857]
+
+
+
+
+
+
+
+
+
+

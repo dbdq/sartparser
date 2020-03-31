@@ -1,0 +1,55 @@
+body {
+    background:
+       linear-gradient(135deg, #708090 22px, #909ca9 22px, #909ca9 24px, transparent 24px, transparent 67px, #909ca9 67px, #909ca9 69px, transparent 69px),
+       linear-gradient(225deg, #708090 22px, #909ca9 22px, #909ca9 24px, transparent 24px, transparent 67px, #909ca9 67px, #909ca9 69px, transparent 69px)0 64px;
+    background-color:#708090;
+    background-size: 64px 128px;
+    padding-bottom: 40px;
+}
+
+div#titlearea{
+    background: #708090;
+    color: white;
+}
+
+div.header, div.contents{
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    padding:0px 20px;
+}
+
+div.headertitle{
+    padding-left:0;
+}
+
+div.contents {
+    padding: 20px;
+    background-color: white;
+    margin-top:0;
+    margin-bottom:30px;
+    border-radius: 0 0 10px 10px;
+}
+
+
+hr.footer{
+    margin-bottom:0px;
+    bottom:31px;
+}
+
+.footer{
+    background:white;
+    position: fixed; 
+    bottom: 0;
+    height:31px;
+    right:0px;
+    left:0;
+}
+.footer img{
+    position:relative;
+}
+
+span.lineno{
+    display:none;
+}
+

@@ -1,0 +1,38 @@
+####################################################################
+# The Grammar file consists of sections. Interleaving of the       #
+# sections is acceptable, except for productions. Each section     #
+# of productions has to only use terminals and nontermianls        #
+# previously defined since they get validated while the production #
+# is being read from the file.                                     #
+# As it is obvious by now, the comments begin with a '#'.          #
+####################################################################
+
+####################################################################
+# Example grammar: Spred                                           #
+#    This is a simple grammar describing the simple left           #
+#    recursion.                                                    #
+####################################################################
+
+Section Terminals
+a
+
+Section NonTerminals
+S
+
+Section Axiom
+S
+
+Section Productions
+S:	a	[.7]
+	| S S	[.3]
+
+
+
+
+
+
+
+
+
+
+

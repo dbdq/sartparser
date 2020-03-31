@@ -1,0 +1,72 @@
+####################################################################
+# Example grammar: Square4                                         #
+# This Grammar accounts for junk at the end and in the front of    # 
+# the sequence.                                                    #
+####################################################################
+
+Section Terminals
+lr ud rl du
+
+Section NonTerminals 
+SQ RS LS 
+LR UD RL DU
+Lr Ud Rl Du
+SKIP
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+SQ
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+SQ:       RS             [0.5]
+	| LS             [0.5]
+
+RS: 	  LR UD RL DU    [1.0]
+<Right hand square@[%start@%end]@%probability>
+LS:	  LR DU RL UD    [1.0]
+<Left hand square@[%start@%end]@%probability>
+
+LR:	  Lr	    [1.0]
+<@Left to right@[%start@%end]@%probability>
+UD:	  Ud	    [1.0]
+<@Up down      @[%start@%end]@%probability>
+RL:	  Rl	    [1.0]
+<@Right to left@[%start@%end]@%probability>
+DU:	  Du	    [1.0]
+<@Down up      @[%start@%end]@%probability>
+
+Lr:	  lr        [0.4]
+	| SKIP lr   [0.3]
+	| lr SKIP   [0.3]
+Ud:	  ud        [0.4]
+	| SKIP ud   [0.3]
+	| ud SKIP   [0.3]
+Rl:	  rl        [0.4]
+	| SKIP rl   [0.3]
+	| rl SKIP   [0.3]
+Du:	  du        [0.4]
+	| SKIP du   [0.3]
+	| du SKIP   [0.3]
+
+SKIP:     lr        [0.07142857142857]
+	| ud        [0.07142857142857]
+	| rl        [0.07142857142857]
+	| du        [0.07142857142857]
+	| lr SKIP   [0.07142857142857]
+	| ud SKIP   [0.07142857142857]
+	| rl SKIP   [0.07142857142857]
+	| du SKIP   [0.07142857142857]
+
+
+
+
+
+
+
+
+
+

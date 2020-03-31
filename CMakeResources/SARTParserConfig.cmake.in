@@ -1,0 +1,21 @@
+# - Config file for SARTParser
+# It defines the following variables
+#  SARTParser_INCLUDE_DIRS - include directories for SARTParser
+#  SARTParser_LIBRARY_DIRS - library directories for SARTParser (normally not used!)
+#  SARTParser_DEFINES      - required compilation definitions
+#  SARTParser_LIBRARIES    - libraries to link against
+#  SARTParser_FOUND        - true if SARTParser was found and imported
+
+if(NOT SARTParser_FOUND)
+    set(SARTParser_INCLUDE_DIRS "@SARTParser_INCLUDE_DIR@" )
+    set(SARTParser_LIBRARY_DIRS "@SARTParser_LIB_DIR@" )
+    set(SARTParser_DEFINES      "@DEFINES@")
+
+    #Include targets from dependencies file
+    include("@SARTParser_CMAKE_DIR@/SARTParserDepends.cmake")
+
+    set(SARTParser_LIBRARIES SARTParser)
+
+    set(SARTParser_FOUND TRUE)
+
+endif()

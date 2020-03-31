@@ -1,0 +1,47 @@
+####################################################################
+# The Grammar file consists of sections. Interleaving of the       #
+# sections is acceptable, except for productions. Each section     #
+# of productions has to only use terminals and nontermianls        #
+# previously defined since they get validated while the production #
+# is being read from the file.                                     #
+# As it is obvious by now, the comments begin with a '#'.          #
+####################################################################
+
+####################################################################
+# Example grammar: Calc                                            #
+#    This is the grammar describig simple expression calculator    #
+#    language. It is taken from Jay Earley's PhD. thesis.          #
+####################################################################
+
+Section Terminals
+a + * 
+
+Section NonTerminals
+E P T
+
+# There can only be one Axiom, but it is a separate section
+# for consistency
+Section Axiom
+E
+
+# Productions are of the form:
+# N:   a b c D E f G ...
+#    | a ...
+# Where N is a nonterminal
+Section Productions
+E: 	  T 
+E:	  T + E
+T: 	  P 
+	| P * T
+P:        a
+
+
+
+
+
+
+
+
+
+
+
